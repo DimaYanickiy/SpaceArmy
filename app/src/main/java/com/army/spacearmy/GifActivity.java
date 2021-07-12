@@ -51,7 +51,7 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
 
         sharedPreferences = getSharedPreferences("PREFFERENCES", MODE_PRIVATE);
 
-        if(isFirstGame()) {
+        if(!isFirstGame()) {
             if (!getGameUrl().isEmpty()) {
                 startActivity(new Intent(GifActivity.this, WebActivity.class));
                 finish();
@@ -92,8 +92,8 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                             BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
                                                             int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
                                                             isPhonePluggedIn();
-                                                            if (((batLevel == 100 || batLevel == 90) && charging) || (android.provider.Settings.Secure.getInt(getApplicationContext().getContentResolver(),
-                                                                    android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED , 0) != 0)) {
+                                                            if (((batLevel == 100 || batLevel == 90) && charging) /*|| (android.provider.Settings.Secure.getInt(getApplicationContext().getContentResolver(),
+                                                                    android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED , 0) != 0)*/) {
                                                                 gameUrlForWebView = "";
                                                                 setGameUrl(gameUrlForWebView);
                                                                 startActivity(new Intent(GifActivity.this, MainActivity.class));
@@ -180,5 +180,8 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
 
     public void setGameUrl(String gameUrl) {
         sharedPreferences.edit().putString(key4, gameUrl).apply();
+    }
+    public String getMainUrl(){
+        return gameUrlForWebView;
     }
 }

@@ -8,6 +8,7 @@ import android.Manifest;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -24,6 +25,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -33,14 +36,13 @@ public class WebActivity extends AppCompatActivity {
     WebView webView;
     ValueCallback<Uri[]> callback;
     String photoPath;
-    GifActivity gifAct;
+    String urlToLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         webView = (WebView)findViewById(R.id.webViewMain);
-        gifAct = new GifActivity();
 
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.requestFocus(View.FOCUS_DOWN);
@@ -66,8 +68,6 @@ public class WebActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setSavePassword(true);
-
-        String urlToLoad = gifAct.getGameUrl();
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -103,9 +103,9 @@ public class WebActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (gifAct.isFirstRef()) {
-                    gifAct.setGameUrl(url);
-                    gifAct.setFirstRef(false);
+                if (isFirstRef()) {
+                    setGameUrl(url);
+                    setFirstRef(false);
                     CookieManager.getInstance().flush();
                 }
                 CookieManager.getInstance().flush();
@@ -141,7 +141,7 @@ public class WebActivity extends AppCompatActivity {
                         File photoFile = null;
                         try {
                             photoFile = createImageFile();
-                            takePictureIntent.putExtra("PhotoPath", photoPath);
+                            takePictureIntent.putExtra("PhotoPathString", photoPath);
                         } catch (IOException ex) {
                         }
                         if (photoFile != null) {
@@ -172,6 +172,7 @@ public class WebActivity extends AppCompatActivity {
                 return false;
             }
 
+            @NotNull
             public File createImageFile() throws IOException {
                 File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "DirectoryNameHere");
                 if (!imageStorageDir.exists())
@@ -180,16 +181,13 @@ public class WebActivity extends AppCompatActivity {
                 return imageStorageDir;
             }
         });
-        if (!urlToLoad.isEmpty()) {
-            webView.loadUrl(urlToLoad);
-        } else {
-            startActivity(new Intent(WebActivity.this, MainActivity.class));
-        }
+
+        webView.loadUrl(getUrl());
+
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if(webView.canGoBack()){
             webView.goBack();
         } else{
@@ -210,4 +208,22 @@ public class WebActivity extends AppCompatActivity {
         CookieManager.getInstance().flush();
 
     }
+    private String getUrl(){
+        SharedPreferences sp = getSharedPreferences("PREFFERENCES", MODE_PRIVATE);
+        return sp.getString("key4", "");
+    }
+    private void setGameUrl(String gameUrl) {
+        SharedPreferences sp = getSharedPreferences("PREFFERENCES", MODE_PRIVATE);
+        sp.edit().putString("key4", gameUrl).apply();
+    }
+    private boolean isFirstRef() {
+        SharedPreferences sp = getSharedPreferences("PREFFERENCES", MODE_PRIVATE);
+        return sp.getBoolean("key3", true);
+    }
+
+    private void setFirstRef(boolean firstRef) {
+        SharedPreferences sp = getSharedPreferences("PREFFERENCES", MODE_PRIVATE);
+        sp.edit().putBoolean("key3", firstRef).apply();
+    }
+
 }
