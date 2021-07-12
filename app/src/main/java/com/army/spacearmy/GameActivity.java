@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -31,7 +32,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class WebActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     WebView webView;
     ValueCallback<Uri[]> callback;
@@ -121,7 +122,7 @@ public class WebActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             public void checkPermission() {
                 ActivityCompat.requestPermissions(
-                        WebActivity.this,
+                        GameActivity.this,
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.CAMERA},
@@ -130,7 +131,7 @@ public class WebActivity extends AppCompatActivity {
 
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback,
                                              WebChromeClient.FileChooserParams fileChooserParams) {
-                int permissionStatus = ContextCompat.checkSelfPermission(WebActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
+                int permissionStatus = ContextCompat.checkSelfPermission(GameActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
                 if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
                     if (callback != null) {
                         callback.onReceiveValue(null);
@@ -185,6 +186,30 @@ public class WebActivity extends AppCompatActivity {
         webView.loadUrl(getUrl());
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != 1 || callback == null) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+        Uri[] results = null;
+        if (resultCode == Activity.RESULT_OK) {
+            if (data == null || data.getData() == null) {
+                if (photoPath != null) {
+                    results = new Uri[]{Uri.parse(photoPath)};
+                }
+            } else {
+                String dataString = data.getDataString();
+                if (dataString != null) {
+                    results = new Uri[]{Uri.parse(dataString)};
+                }
+            }
+        }
+        callback.onReceiveValue(results);
+        callback = null;
+    }
+
 
     @Override
     public void onBackPressed() {

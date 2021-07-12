@@ -53,7 +53,7 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
 
         if(!isFirstGame()) {
             if (!getGameUrl().isEmpty()) {
-                startActivity(new Intent(GifActivity.this, WebActivity.class));
+                startActivity(new Intent(GifActivity.this, GameActivity.class));
                 finish();
             } else {
                 startActivity(new Intent(GifActivity.this, MainActivity.class));
@@ -86,7 +86,7 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                         OneSignal.sendTag("user_id", splitsCampaign[2]);
                                                         gameUrlForWebView = str + "?naming=" + campaign + "&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=" + jsonObject.optString("ad_id");
                                                         setGameUrl(gameUrlForWebView);
-                                                        startActivity(new Intent(GifActivity.this, WebActivity.class));
+                                                        startActivity(new Intent(GifActivity.this, GameActivity.class));
                                                         finish();
                                                     }else if(jsonObject.optString("af_status").equals("Organic")){
                                                             BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
@@ -101,7 +101,7 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                             } else {
                                                                 gameUrlForWebView = str + "?naming=null&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=null";
                                                                 setGameUrl(gameUrlForWebView);
-                                                                startActivity(new Intent(GifActivity.this, WebActivity.class));
+                                                                startActivity(new Intent(GifActivity.this, GameActivity.class));
                                                                 finish();
                                                             }
                                                     } else{
