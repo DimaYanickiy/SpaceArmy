@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/level1"
+    android:orientation="vertical"
+    tools:context=".PlayActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="652dp"
+        android:layout_weight="4"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/buttonStop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/cardview_shadow_end_color"
+            android:contentDescription="btnStop"
+            app:srcCompat="@drawable/btn_stop" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="coin"
+            app:srcCompat="@drawable/coin" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:fontFamily="@font/aldrich"
+            android:gravity="center_vertical"
+            android:text="1.3k"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="656dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aldrich"
+                android:text="Next: "
+                android:textColor="@color/purple_500"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/nextRocket"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="nextRocket"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/r1_red" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/click"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:text="You can change rocket. Click on small rocket to change."
+                android:textColor="@color/purple_500"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/fr"
+                android:layout_width="wrap_content"
+                android:layout_height="114dp"
+                android:background="@color/black"
+                android:fontFamily="@font/aldrich"
+                android:text="Chose fraction:"
+                android:textColor="@color/purple_500"
+                android:textSize="48sp"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:id="@+id/fr2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#6200EA"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/red_fraction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:contentDescription="red_fraction"
+                    app:srcCompat="@drawable/r1_red" />
+
+                <ImageView
+                    android:id="@+id/silver_fraction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:contentDescription="silver_fraction"
+                    app:srcCompat="@drawable/r1_silver" />
+
+                <ImageView
+                    android:id="@+id/yellow_fraction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:contentDescription="yellow_fraction"
+                    app:srcCompat="@drawable/r1_yellow" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/mainRocket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:srcCompat="@drawable/r1_red" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/shield"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center"
+                android:text="Shield Lvl.1"
+                android:textColor="@color/purple_500"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center"
+                android:text="Speed Lvl.1"
+                android:textColor="@color/purple_500"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/gun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:fontFamily="@font/aldrich"
+                android:gravity="center"
+                android:text="Gun Lvl.1"
+                android:textColor="@color/purple_500"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/button_shield"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:contentDescription="btn_shield"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/button" />
+
+                <TextView
+                    android:id="@+id/price_shield"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/aldrich"
+                    android:text="10"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/button_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:contentDescription="btn_speed"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/button" />
+
+                <TextView
+                    android:id="@+id/price_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/aldrich"
+                    android:text="10"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/button_gun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/cardview_shadow_end_color"
+                    android:contentDescription="btn_gun"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/button" />
+
+                <TextView
+                    android:id="@+id/price_gun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/aldrich"
+                    android:text="10"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

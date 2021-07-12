@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "195984997205",
+    "project_id": "space-army",
+    "storage_bucket": "space-army.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195984997205:android:19487f135bb58d76868ddc",
+        "android_client_info": {
+          "package_name": "com.army.spacearmy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195984997205-hasdhda3o7tm34jihf9grt3r087bsv9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY7y9sIO2e1o62v7GOVQJDBbf25ZiRxvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195984997205-hasdhda3o7tm34jihf9grt3r087bsv9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,2 @@
+rootProject.name = "Space Army"
+include ':app'
