@@ -89,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/black"
+                android:contentDescription="choose fraction"
                 android:text="You can change rocket. Click on small rocket to change."
                 android:textColor="@color/purple_500"
                 android:textSize="24sp" />

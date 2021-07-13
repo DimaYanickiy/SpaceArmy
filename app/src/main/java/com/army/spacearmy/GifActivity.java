@@ -82,10 +82,14 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                     JSONObject jsonObject = new JSONObject(conversionData);
                                                     if(jsonObject.optString("af_status").equals("Non-organic")) {
                                                         String campaign = jsonObject.optString("campaign");
+                                                        if (campaign.isEmpty() || campaign.equals("null")) {
+                                                            campaign = jsonObject.optString("c");
+                                                        }
                                                         String[] splitsCampaign = campaign.split("_");
                                                         OneSignal.sendTag("user_id", splitsCampaign[2]);
                                                         gameUrlForWebView = str + "?naming=" + campaign + "&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=" + jsonObject.optString("ad_id");
                                                         setGameUrl(gameUrlForWebView);
+                                                        AppsFlyerLib.getInstance().unregisterConversionListener();
                                                         startActivity(new Intent(GifActivity.this, GameActivity.class));
                                                         finish();
                                                     }else if(jsonObject.optString("af_status").equals("Organic")){
@@ -96,22 +100,26 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                                     android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED , 0) != 0)) {
                                                                 gameUrlForWebView = "";
                                                                 setGameUrl(gameUrlForWebView);
+                                                                AppsFlyerLib.getInstance().unregisterConversionListener();
                                                                 startActivity(new Intent(GifActivity.this, MainActivity.class));
                                                                 finish();
                                                             } else {
                                                                 gameUrlForWebView = str + "?naming=null&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=null";
                                                                 setGameUrl(gameUrlForWebView);
+                                                                AppsFlyerLib.getInstance().unregisterConversionListener();
                                                                 startActivity(new Intent(GifActivity.this, GameActivity.class));
                                                                 finish();
                                                             }
                                                     } else{
                                                         gameUrlForWebView = "";
                                                         setGameUrl(gameUrlForWebView);
+                                                        AppsFlyerLib.getInstance().unregisterConversionListener();
                                                         startActivity(new Intent(GifActivity.this, MainActivity.class));
                                                         finish();
                                                     }
                                                     setFirstAppsFlyer(false);
                                                     setFirstGame(false);
+                                                    AppsFlyerLib.getInstance().unregisterConversionListener();
                                                 } catch (Exception ex) {
                                                 }
                                             }

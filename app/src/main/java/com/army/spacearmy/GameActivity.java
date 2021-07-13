@@ -37,7 +37,7 @@ public class GameActivity extends AppCompatActivity {
     WebView webView;
     ValueCallback<Uri[]> callback;
     String photoPath;
-    String urlToLoad;
+    //String urlToLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,9 +182,7 @@ public class GameActivity extends AppCompatActivity {
                 return imageStorageDir;
             }
         });
-
         webView.loadUrl(getUrl());
-
     }
 
     @Override
