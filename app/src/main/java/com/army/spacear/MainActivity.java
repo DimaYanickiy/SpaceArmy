@@ -1,22 +1,12 @@
-package com.army.spacearmy;
+package com.army.spacear;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.appsflyer.AppsFlyerConversionListener;
-import com.appsflyer.AppsFlyerLib;
-import com.onesignal.OneSignal;
-
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

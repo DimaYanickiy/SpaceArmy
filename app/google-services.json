@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "195984997205",
-    "project_id": "space-army",
-    "storage_bucket": "space-army.appspot.com"
+    "project_number": "590088578859",
+    "project_id": "space-army-dc622",
+    "storage_bucket": "space-army-dc622.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:195984997205:android:19487f135bb58d76868ddc",
+        "mobilesdk_app_id": "1:590088578859:android:74e4d1d6f4950ed22f876e",
         "android_client_info": {
-          "package_name": "com.army.spacearmy"
+          "package_name": "com.army.spacear"
         }
       },
       "oauth_client": [
         {
-          "client_id": "195984997205-hasdhda3o7tm34jihf9grt3r087bsv9a.apps.googleusercontent.com",
+          "client_id": "590088578859-ts6208hpo1omddak9g4j5d955l3a35oi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBY7y9sIO2e1o62v7GOVQJDBbf25ZiRxvk"
+          "current_key": "AIzaSyDKYMN1BSf2Xi9nVbA8ydN0IZp7mMdIQzI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "195984997205-hasdhda3o7tm34jihf9grt3r087bsv9a.apps.googleusercontent.com",
+              "client_id": "590088578859-ts6208hpo1omddak9g4j5d955l3a35oi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,4 +1,4 @@
-package com.army.spacearmy;
+package com.army.spacear;
 
 import androidx.appcompat.app.AppCompatActivity;
 

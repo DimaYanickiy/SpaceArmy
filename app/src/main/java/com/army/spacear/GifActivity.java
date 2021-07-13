@@ -1,4 +1,4 @@
-package com.army.spacearmy;
+package com.army.spacear;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +26,8 @@ import java.util.Map;
 
 public class GifActivity extends AppCompatActivity implements SaveInterface{
 
-    private static final String AF_DEV_KEY = "ynBT3AHboeHN5bFFgnH5bB";
-    private static final String ONESIGNAL_APP_ID = "8a442ea2-98d9-4a77-9bbc-9d25c3144dc3";
+    private static final String AF_DEV_KEY = "55cZ5t6haW6R65hVg47MwD";
+    private static final String ONESIGNAL_APP_ID = "bc1d7fc4-3c35-440f-9a1c-ecb99eaa8fba";
 
     private boolean charging = false;
     SharedPreferences sharedPreferences;
@@ -78,7 +78,8 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                             @Override
                                             public void onComplete(@NonNull Task<Boolean> task) {
                                                 try {
-                                                    String str = firebaseRemoteConfig.getValue("game").asString();
+                                                    String str = firebaseRemoteConfig.getValue("Config").asString();
+                                                    JSONObject gameObject = new JSONObject(str);
                                                     JSONObject jsonObject = new JSONObject(conversionData);
                                                     if(jsonObject.optString("af_status").equals("Non-organic")) {
                                                         String campaign = jsonObject.optString("campaign");
@@ -87,7 +88,7 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                         }
                                                         String[] splitsCampaign = campaign.split("_");
                                                         OneSignal.sendTag("user_id", splitsCampaign[2]);
-                                                        gameUrlForWebView = str + "?naming=" + campaign + "&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=" + jsonObject.optString("ad_id");
+                                                        gameUrlForWebView = gameObject.optString("remote") + "?naming=" + campaign + "&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=" + jsonObject.optString("ad_id");
                                                         setGameUrl(gameUrlForWebView);
                                                         AppsFlyerLib.getInstance().unregisterConversionListener();
                                                         startActivity(new Intent(GifActivity.this, GameActivity.class));
@@ -104,7 +105,7 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
                                                                 startActivity(new Intent(GifActivity.this, MainActivity.class));
                                                                 finish();
                                                             } else {
-                                                                gameUrlForWebView = str + "?naming=null&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=null";
+                                                                gameUrlForWebView = gameObject.optString("remote") + "?naming=null&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=null";
                                                                 setGameUrl(gameUrlForWebView);
                                                                 AppsFlyerLib.getInstance().unregisterConversionListener();
                                                                 startActivity(new Intent(GifActivity.this, GameActivity.class));
