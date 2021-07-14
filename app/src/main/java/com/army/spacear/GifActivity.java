@@ -11,9 +11,11 @@ import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.util.JsonReader;
+import android.widget.ImageView;
 
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
+import com.bumptech.glide.Glide;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +32,8 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
     private static final String AF_DEV_KEY = "55cZ5t6haW6R65hVg47MwD";
     private static final String ONESIGNAL_APP_ID = "bc1d7fc4-3c35-440f-9a1c-ecb99eaa8fba";
 
+    private ImageView img;
+
     private boolean charging = false;
     SharedPreferences sharedPreferences;
 
@@ -44,6 +48,9 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gif);
+        img = (ImageView)findViewById(R.id.imageView2);
+
+        loadGif();
 
         OneSignal.initWithContext(this);
         OneSignal.setAppId(ONESIGNAL_APP_ID);
@@ -158,6 +165,9 @@ public class GifActivity extends AppCompatActivity implements SaveInterface{
         if (batteryCharge) {charging=true;}
         if (usbCharge) {charging=true;}
         if (acCharge) {charging=true;}
+    }
+    public void loadGif(){
+        Glide.with(this).load(R.drawable.loading).into(img);
     }
 
     public boolean isFirstGame() {
